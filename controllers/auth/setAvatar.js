@@ -5,7 +5,7 @@ const jimp = require('jimp');
 
 const avatarsDir = path.join(__dirname, '../../', 'public', 'avatars');
 
-const updateAvatar = async (req, res) => {
+const setAvatar = async (req, res) => {
   const { path: tempUpload, originalname } = req.file;
   const { _id } = req.user;
 
@@ -30,4 +30,4 @@ const updateAvatar = async (req, res) => {
   }
 };
 
-module.exports = updateAvatar;
+module.exports = setAvatar;
