@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
-const { SECRET_KEY } = process.env;
+
 const { basedir } = global;
 const User = require(`${basedir}/models/user`);
+const secret = process.env.SECRET_KEY;
 
 const auth = async (req, res, next) => {
   const { authorization = "" } = req.headers;
@@ -12,7 +13,7 @@ const auth = async (req, res, next) => {
       .json({ status: "error", code: 401, message: "Not authorized" });
   }
   try {
-    const { id } = jwt.verify(token, SECRET_KEY);
+    const { id } = jwt.verify(token, secret);
     const user = await User.findById(id);
     if (!user || token !== user.token) {
       return res
