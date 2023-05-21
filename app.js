@@ -4,7 +4,7 @@ const cors = require("cors");
 
 global.basedir = __dirname
 
-const userRouter = require('./routes/api/auth')
+const userRouter = require('./routes/api/users')
 
 const contactsRouter = require("./routes/api/contacts");
 
@@ -15,8 +15,9 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"))
 
-app.use('/api/auth', userRouter)
+app.use('/api/userts', userRouter)
 app.use("/api/contacts", contactsRouter);
 
 app.use((req, res) => {
