@@ -13,6 +13,8 @@ const { validateUser } = require("./validation");
 const ctrlWrapper = require(`${basedir}/helpers/ctrlWrapper`);
 
 router.post("/register", validateUser, ctrlWrapper(register));
+router.post("/verify", validateUser, ctrlWrapper(resendVerification));
+router.get("/verify/:verificationToken", ctrlWrapper(verifyEmail));
 
 router.post("/login", validateUser, ctrlWrapper(login));
 
